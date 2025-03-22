@@ -1,0 +1,87 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f3fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* 容器样式 */
+.container {
+    max-width: 900px; /* 稍微加宽容器 */
+    margin: 50px auto;
+    text-align: center;
+    background-color: #ffffff; /* 白色背景 */
+    padding: 30px; /* 内边距 */
+    border-radius: 10px; /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+    border: 1px solid #d9e8f1; /* 浅蓝色边框 */
+}
+
+/* 标题样式 */
+h1 {
+    color: #2c3e50; /* 深蓝灰色 */
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+/* 描述样式 */
+.description {
+    color: #7f8c8d; /* 中灰色 */
+    font-size: 1.2em;
+    margin: 0 0 30px 0;
+    padding: 10px;
+    border: 1px dashed #bdc3c7; /* 虚线边框 */
+    border-radius: 5px;
+}
+
+/* 特性区域 */
+.features {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+}
+
+/* 特性项 */
+.feature-item {
+    background: #f9f9f9; /* 浅灰背景 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    width: 28%; /* 稍微调整宽度 */
+    border: 2px solid #3498db; /* 蓝色边框 */
+    transition: transform 0.2s; /* 悬停动画 */
+}
+
+.feature-item:hover {
+    transform: translateY(-5px); /* 悬停时轻微上移 */
+    border-color: #2980b9; /* 深蓝色边框 */
+}
+
+.feature-item h3 {
+    color: #3498db; /* 蓝色标题 */
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    color: #555;
+    font-size: 1em;
+}
+
+/* 链接区域 */
+.links .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 10px;
+    background-color: #3498db; /* 蓝色按钮 */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid #2980b9; /* 深蓝色边框 */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.links .btn:hover {
+    background-color: #2980b9; /* 深蓝色悬停 */
+    border-color: #1f618d;
+}
