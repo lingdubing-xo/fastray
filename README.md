@@ -106,6 +106,7 @@ LOG_LEVEL=INFO
 ```bash
 git clone <repository-url>
 cd fastray
+uv venv
 .venv/bin/activate
 uv sync(需安装uv)
 ```
