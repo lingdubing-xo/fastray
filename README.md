@@ -126,3 +126,7 @@ uv run uvicorn main:app --reload
 
 Email: 3189377462@qq.com
 
+## 网站主页
+首页上有失踪人口的照片和信息，如果觉得不美观的话可以去除resources/templates/index.html中的左侧右侧图片代码
+删除resources/static/images文件夹
+
