@@ -7,29 +7,43 @@
     <link rel="stylesheet" href="/resources/static/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>欢迎体验 {{ title }}</h1>
-        <p class="description">{{ description }}</p>
+    <div class="main-wrapper">
+        <!-- 左侧图片 -->
+        <div class="side-image left-image">
+            <img src="/resources/static/images/2bbbd552de5cda2304ccefc67b4fb713.jpg" alt="左侧装饰图">
+            <p>失踪人员:胡博文 联系方式:xunqinkf</p>
+        </div>
 
-        <div class="features">
-            <div class="feature-item">
-                <h3>⚡ 方便管理</h3>
-                <p>实时监控和管理电动车状态</p>
+        <!-- 主内容区域 -->
+        <div class="container">
+            <h1>欢迎体验 {{ title }}</h1>
+            <p class="description">{{ description }}</p>
+
+            <div class="features">
+                <div class="feature-item">
+                    <h3>⚡ 方便管理</h3>
+                    <p>实时监控和管理电动车状态</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🛡️ 数据安全</h3>
+                    <p>采用JWT加密，保护用户隐私</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🌐 智能导航</h3>
+                    <p>提供最优路线规划，优化骑行体验</p>
+                </div>
             </div>
-            <div class="feature-item">
-                <h3>🛡️ 数据安全</h3>
-                <p>采用JWT加密，保护用户隐私</p>
-            </div>
-            <div class="feature-item">
-                <h3>🌐 智能导航</h3>
-                <p>提供最优路线规划，优化骑行体验</p>
+
+            <div class="links">
+                <a href="/docs" class="btn">进入文档</a>
             </div>
         </div>
 
-        <div class="links">
-            <a href="/docs" class="btn">进入文档</a>
+        <!-- 右侧图片 -->
+        <div class="side-image right-image">
+            <img src="/resources/static/images/050c07fe75f68d40e41007be7d6326b9.jpeg" alt="右侧装饰图">
+             <p>失踪人员:李志宁 联系方式:xunqinkf</p>
         </div>
     </div>
-
 </body>
 </html>
