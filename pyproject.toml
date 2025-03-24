@@ -16,6 +16,7 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "python-multipart>=0.0.20",
     "requests>=2.32.3",
+    "rich>=13.9.4",
     "shapely>=2.0.7",
     "sqlmodel>=0.0.24",
     "tortoise-orm>=0.24.2",
