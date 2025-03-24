@@ -6,16 +6,58 @@ body {
     padding: 0;
 }
 
+/* 包裹层，用于布局图片和主内容 */
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 确保页面占满视口 */
+    padding: 20px; /* 外边距，避免贴边 */
+    box-sizing: border-box;
+}
+
 /* 容器样式 */
 .container {
-    max-width: 900px; /* 稍微加宽容器 */
-    margin: 50px auto;
+    max-width: 900px; /* 保持原始宽度 */
+    margin: 50px auto; /* 上下边距保持不变 */
     text-align: center;
     background-color: #ffffff; /* 白色背景 */
     padding: 30px; /* 内边距 */
     border-radius: 10px; /* 圆角 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
     border: 1px solid #d9e8f1; /* 浅蓝色边框 */
+    flex: 1; /* 允许容器在 flex 布局中占据剩余空间 */
+}
+
+/* 侧边图片样式 */
+.side-image {
+    flex: 0 0 auto; /* 不拉伸图片区域 */
+    padding: 20px; /* 与主内容保持间距 */
+}
+
+.side-image img {
+    max-width: 200px; /* 控制图片最大宽度 */
+    height: auto;
+    display: block;
+    border-radius: 8px; /* 与容器圆角一致 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 与特性项阴影相似 */
+    border: 2px solid #3498db; /* 与特性项边框颜色一致 */
+    transition: transform 0.2s; /* 添加悬停动画 */
+}
+
+.side-image img:hover {
+    transform: translateY(-5px); /* 悬停时上移，与特性项一致 */
+    border-color: #2980b9; /* 深蓝色边框，与特性项悬停一致 */
+}
+
+/* 左侧图片特定样式（可选） */
+.left-image {
+    margin-right: 20px; /* 与主内容保持间距 */
+}
+
+/* 右侧图片特定样式（可选） */
+.right-image {
+    margin-left: 20px; /* 与主内容保持间距 */
 }
 
 /* 标题样式 */
@@ -84,4 +126,15 @@ h1 {
 .links .btn:hover {
     background-color: #2980b9; /* 深蓝色悬停 */
     border-color: #1f618d;
+}
+
+/* 响应式设计：小屏幕时隐藏图片 */
+@media (max-width: 1000px) {
+    .side-image {
+        display: none; /* 屏幕小于1000px时隐藏图片 */
+    }
+    .container {
+        margin: 20px auto; /* 缩小外边距 */
+        max-width: 100%; /* 占满宽度 */
+    }
 }
