@@ -31,7 +31,10 @@ class RoleAccessService(BaseService[RoleAccessLink]):
             return session.exec(statement).all()
 
     def create_role_access(self, user_id: str, access_id: str, role_id: str) -> RoleAccessLink:
-        """创建角色权限关联"""
+        """创建角色权限关联，如果已存在则跳过"""
+        existing = self.get_by_composite_id(role_id, access_id)
+        if existing:
+            return existing  # 如果已存在，直接返回现有记录
         role_access_link = RoleAccessLink(
             role_id=role_id,
             access_id=access_id,
@@ -39,3 +42,11 @@ class RoleAccessService(BaseService[RoleAccessLink]):
             update_by=user_id
         )
         return self.create(role_access_link)
+
+    def delete_role_access(self, role_id: str, access_id: str) -> bool:
+        """删除指定角色权限关联"""
+        existing = self.get_by_composite_id(role_id, access_id)
+        if existing:
+            self.delete(existing)
+            return True
+        return False

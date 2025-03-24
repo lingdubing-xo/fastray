@@ -96,7 +96,7 @@ async def verify_menu_permission(path: str, user_info: Tuple[str, str] = Depends
             dependencies=[Depends(check_permission)])
 async def update_role_access(role_id: str, access_id: str, user_info: Tuple[str, str] = Depends(check_permission)):
     """
-    增加角色权限
+    更新角色权限（增加指定权限及其父级权限）
 
     :param role_id: 角色ID
     :param access_id: 权限ID
@@ -107,16 +107,53 @@ async def update_role_access(role_id: str, access_id: str, user_info: Tuple[str,
     access_service = AccessService()
     role_access_service = RoleAccessService()
 
-    # 创建当前权限关联
-    role_access_service.create_role_access(role_id=role_id, access_id=access_id, user_id=user_id)
+    # 创建当前权限关联（如果不存在）
+    role_access_service.create_role_access(user_id=user_id, access_id=access_id, role_id=role_id)
 
     # 创建父级权限关联
     parent_accesses = access_service.get_parent_access(access_id)
     for access in parent_accesses:
-        role_access_service.create_role_access(role_id=role_id, access_id=access.access_id, user_id=user_id)
+        role_access_service.create_role_access(user_id=user_id, access_id=access.access_id, role_id=role_id)
 
     return ReturnNoneDataModel(
         success=True,
         message="更新角色权限成功",
+        code=STATUS_CODE["success"]
+    )
+
+
+@router.get('/delete_role_access', summary="删除角色权限", response_model=ReturnNoneDataModel,
+               dependencies=[Depends(check_permission)])
+async def delete_role_access(role_id: str, access_id: str, user_info: Tuple[str, str] = Depends(check_permission)):
+    """
+    删除角色权限关联
+
+    :param role_id: 角色ID
+    :param access_id: 权限ID
+    :param user_info: 用户信息 (user_id, role_id) 从 check_permission 获取
+    :return: 删除结果
+    """
+    user_id, _ = user_info
+    role_access_service = RoleAccessService()
+    access_service = AccessService()
+
+    # 检查权限是否存在并删除
+    existing = role_access_service.get_by_composite_id(role_id=role_id, access_id=access_id)
+    if not existing:
+        return ReturnNoneDataModel(
+            success=False,
+            message="角色权限关联不存在",
+            code=STATUS_CODE["not_found"]
+        )
+
+    role_access_service.delete_role_access(access_id=access_id, role_id=role_id)
+
+    parent_accesses = access_service.get_parent_access(access_id)
+    for access in parent_accesses:
+        role_access_service.delete_role_access(access_id=access.access_id, role_id=role_id)
+
+    return ReturnNoneDataModel(
+        success=True,
+        message="删除角色权限成功",
         code=STATUS_CODE["success"]
     )
